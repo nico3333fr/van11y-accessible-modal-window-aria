@@ -2,8 +2,8 @@
   "name": "van11y-accessible-modal-aria",
   "description": "ES2015 accessible modal window system, using ARIA (compatible IE9+ when transpiled)",
   "homepage": "https://van11y.net/accessible-modal/",
-  "main": "van11y-accessible-tab-panel-aria.es6.js",
-  "version": "1.0.3",
+  "main": "van11y-accessible-modal-window-aria.es6.js",
+  "version": "1.0.4",
   "keywords": [
     "Accessibility",
     "ARIA",
