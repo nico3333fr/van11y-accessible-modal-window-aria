@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <meta charset="utf-8" />
+ <title>Demo: Accessible modal window using ARIA and Vanilla Javascript - Van11y </title>
+ 
+<link href="./styles.css" rel="stylesheet" media="all" />
+
+<meta name="description" content="This script will create a fantastic-shiny accessible modal window, using ARIA" />
+<meta name="keywords" content="collection, accessibility, scripts, projects, modal, tab panel, accordion, hide/show, customisable" />
+
+<meta property="og:type" content="website" />
+<!-- Open Graph Meta Data -->
+<meta property="og:title" content="Demo: Accessible modal window using ARIA and Vanilla Javascript - Van11y" />
+<meta property="og:description" content="This script will create a fantastic-shiny accessible modal window, using ARIA." />
+<meta property="og:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta property="og:url" content="https://van11y.net/accessible-modal/" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://van11y.net/accessible-modal/" />
+<meta name="twitter:title" content="Demo: Accessible modal window using ARIA and Vanilla Javascript - Van11y" />
+<meta name="twitter:description" content="This script will create a fantastic-shiny accessible modal window, using ARIA." />
+<meta name="twitter:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta name="twitter:site" content="Van11y" />
+<meta name="twitter:creator" content="Van11y" />
+
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<body role="document">
+
+
+<div id="page" class="mw960e" role="main">
+
+ <br>
+ <div class="aligncenter">
+ 	<a href="https://van11y.net/" class="logo-link"><img src="https://van11y.net/layout/images/logo-van11y.svg" alt="Back to Van11y home page" width="267" height="90" class="logo" /></a>
+ </div>
+ <br>
+
+ <h1 class="aligncenter">Demo: accessible modal window using <abbr title="Accessible Rich Internet Applications">ARIA</abbr> and Vanilla <abbr title="JavaScript">JS</abbr> </h1>
+
+ <p>
+ 	<button class="js-modal button" data-modal-prefix-class="simple" data-modal-text="Hello world!" data-modal-title="Title" data-modal-close-text="Close" data-modal-close-title="Close this window">Show me a modal window</button>
+ </p>
+ 
+ <p><button class="js-modal button" data-modal-prefix-class="simple-animated" data-modal-content-id="modal_id_2nd_example" data-modal-title="Title for your modal" data-modal-close-text="Close it" data-modal-close-title="Close it, really">Show me another modal</button></p>
+ 
+    <div id="modal_id_2nd_example" class="hidden">
+      <p>Woot, you can take the content of a hidden <code tabindex="0">div</code> (and test the focus trap).</p>
+      <p>You may also test a loooooooooong…<br><br><br><br><br><br><br><br><br>content.</p>
+    </div>
+    
+  
+   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="It’s easy to use" data-modal-close-text="Close it" data-modal-close-title="Close this window" data-modal-close-img="close.svg" id="label_modal_6">It’s easy</button></p>
+  
+  <div id="informations_other" class="hidden">
+     <p>It’s so easy.</p>
+     <p>Styling modal components can be made for responsive websites (try to resize).</p>
+    </div>
+  
+  
+<div class="footer" role="contentinfo"><br>This demo is a demo of <a href="https://van11y.net/accessible-modal/" class="link">Van11y Accessible modal window using <abbr title="Accessible Rich Internet Applications">ARIA</abbr></a>.<br></div>
+
+</div>
+<script src="../dist/van11y-accessible-modal-window-aria.min.js"></script>
+</body>
+</html>

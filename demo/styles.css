@@ -1,0 +1,357 @@
+html { 
+  font-size: 62.5%;
+  /* IE9-IE11 math fixing. See https://connect.microsoft.com/IE/feedback/details/816709/ */
+  /* Thanks to @guardian, @victorbritopro, @eQRoeil & Knacss */
+  font-size: calc(1em * 0.625);
+  box-sizing: border-box; 
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  background: #fff;
+  color: #444;
+  font-family: 'roboto', Arial, sans-serif;
+  font-size: 1.8em; /* equiv 18px */
+  line-height: 1.5; /* to update if needed */
+}
+
+
+@font-face {
+    /*font-family: 'robotoregular';*/
+    font-family: 'roboto';
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    /*font-family: 'robotobold';*/
+    font-family: 'roboto';
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.svg#robotobold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    /*font-family: 'robotoitalic';*/
+    font-family: 'roboto';
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.svg#robotoitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+.mw960e {
+  max-width: 60em;
+  margin: 0 auto;
+}
+.aligncenter {
+  text-align: center;
+}
+h1,
+.h1 {
+  display: block;
+  font-size: 1.55556em; /* equiv 28px */
+  line-height: 1.92857;
+  margin: 0 0 .96429em 0;
+  font-weight: normal;
+}
+h2,
+.h2 {
+  display: block;
+  font-size: 1.33333em; /* equiv 24px */
+  line-height: 1.125;
+  margin: 0 0 1.125em 0;
+  font-weight: normal;
+}
+
+.link {
+  color: #4d287f;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid #4d287f;
+}
+/* remember focus */
+.link:focus,
+.link:hover,
+.link:active {
+  color: #4d287f;
+  border-bottom: 1px solid #4d287f;
+  outline: 2px dotted;
+}
+/* avoid border on images in links + fix border image IE */
+.link:link img,
+.link:visited img, 
+img {
+  border-style: none;
+}
+/* external links */
+.link[href^="http://"]:after,
+.link[href^="https://"]:after {
+  content:"\202f\2197";
+  speak: none;
+  border-bottom: 1px solid #fff;
+  
+}
+
+.logo-link,
+.logo-link:focus,
+.logo-link:hover,
+.logo-link:active,
+.link.noimg[href^="http://"]:after,
+.link.noimg[href^="https://"]:after {
+  border-bottom: 0;
+}
+
+.link.noimg[href^="http://"]:after,
+.link.noimg[href^="https://"]:after {
+  content: '';
+  speak: none;
+}
+
+.button {
+  background: #128197;
+  font: inherit;
+  border: 0;
+  color: #fff;
+  border-radius: .5em;
+  cursor: pointer;
+  padding: .25em .5em;
+  display: inline-block;
+}
+
+
+
+/* --------------- styles for modal -----------------------*/
+
+.invisible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+.hidden { display: none; }
+
+
+/* needed for old browsers */
+dialog {
+  display: block;
+  border: 0;
+}
+/* removes scroll when modal is opened */
+.no-scroll {
+  overflow: hidden;
+}
+/* overlay covers everything */
+.simple-modal-overlay ,
+.simple-animated-modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  opacity: .8;
+  z-index: 666;
+  cursor: pointer;
+}
+.simple-modal-overlay[data-background-click="disabled"],
+.simple-animated-modal-overlay[data-background-click="disabled"],
+.simple-left-modal-overlay[data-background-click="disabled"] {
+  cursor: auto;
+}
+.simple-animated-modal-overlay  {
+  animation: fadewhite ease .5s 1 normal ;
+}
+
+@keyframes fadewhite {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .8;
+  }
+}
+/* modal */
+.simple-modal,
+.simple-animated-modal {
+  position: fixed;
+  left: 15%;
+  top: 5%;
+  width: 70%;
+  max-height: 98vh;
+  /*margin: 0 auto;*/
+  border: 2px solid #000; 
+  background: #fff;
+  z-index: 667;
+  padding: 2em;
+  right: auto;
+  overflow: auto;
+}
+.simple-modal-close,
+.simple-animated-modal-close {
+  float: right;
+  background: #128197;
+  border-radius: 1em;
+  color: #fff;
+  border: 0;
+  font: inherit;
+  padding: .25em .5em;
+  cursor: pointer;
+}
+.simple-modal-close:focus,
+.simple-modal-close:hover,
+.simple-modal-close:active {
+  outline: 1px dotted #fff;  
+}
+.simple-modal-close:hover,
+.simple-modal-close:active {
+  background: #4d287f;
+  
+}
+
+.simple-animated-modal {
+  -webkit-animation: apparition ease .5s 1 normal ;
+          animation: apparition ease .5s 1 normal ;
+}
+
+@-webkit-keyframes apparition {
+  0% {
+    opacity: 0;
+	  max-height: 0;
+	  width: 0;
+	  left: 50%;
+  }
+  100% {
+    opacity: 1;
+	  max-height: 100%;
+	  width: 70%;
+	  left: 15%;
+  }
+}
+@keyframes apparition {
+  0% {
+    opacity: 0;
+	  max-height: 0;
+	  width: 0;
+	  left: 50%;
+  }
+  100% {
+    opacity: 1;
+	  max-height: 100%;
+	  width: 70%;
+	  left: 15%;
+  }
+}
+
+
+/* another modal styling example */
+/* tooltip modal for it’s easy button */
+.simple-left-modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .8);
+  opacity: .8;
+  z-index: 666;
+  cursor: pointer;
+}
+
+.simple-left-modal {
+  left: auto;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 667;
+  position: fixed;
+  width: 40em;
+  max-width: 100%;
+  padding: 0 1em 1em 1em;
+  font-size: 1em;
+  border: 0;
+  overflow: auto;
+  background-color: #aaa ; /* fallback IE9 */
+  background-image:
+      -webkit-linear-gradient(
+        top,
+        #128197 3em,
+        #f7f7f7 3em
+      );  background-image:
+      linear-gradient(
+        to bottom,
+        #128197 3em,
+        #f7f7f7 3em
+      );
+  background-attachment: local;
+}
+.simple-left-modal-close {
+  position: absolute;
+  top: .5em;
+  right: 0;
+  background: transparent;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+.simple-left-modal-title {
+  color: #fff;
+  font-size: 1.5em;
+}
+
+/* it can be easily adapted in media-queries for tablets/mobile */
+
+/* for this example: tablets */
+@media (max-width: 55.625em) {
+
+  .simple-modal,
+  .simple-animated-modal {
+    left: 5%;
+    top: 5%;
+    height: 90%;
+    width: 90%;
+  }
+  
+}
+
+/* for this example: mobile */
+@media (max-width: 44.375em) {
+
+  .simple-modal,
+  .simple-animated-modal {
+    left: 1%;
+    top: 1%;
+    width: 98%;
+    height: 98%;
+  }
+
+}
+
+
+

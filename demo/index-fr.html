@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+ <meta charset="utf-8" />
+ <title>Démo : Système de fenêtre modale accessible avec ARIA et en Vanilla JavaScript - Van11y </title>
+ 
+<link href="./styles.css" rel="stylesheet" media="all" />
+
+<meta name="description" content="Ce script va créer une fenêtre modale accessible, en utilisant ARIA et Vanilla Javascript" />
+<meta name="keywords" content="collection, accessibilité, scripts, projets, onglets, accordéon, panneaux dépliants, info-bulle, customisable" />
+
+<meta property="og:type" content="website" />
+<!-- Open Graph Meta Data -->
+<meta property="og:title" content="Démo : Système de fenêtre modale accessible avec ARIA et en Vanilla Javascript - Van11y" />
+<meta property="og:description" content="Ce script va créer une fenêtre modale accessible, en utilisant ARIA et Vanilla Javascript" />
+<meta property="og:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta property="og:url" content="https://van11y.net/fr/onglets-accessibles/" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://van11y.net/fr/onglets-accessibles/" />
+<meta name="twitter:title" content="Démo : Système de fenêtre modale accessible avec ARIA et en Vanilla Javascript - Van11y" />
+<meta name="twitter:description" content="Ce script va créer une fenêtre modale accessible, en utilisant ARIA et Vanilla Javascript" />
+<meta name="twitter:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta name="twitter:site" content="Van11y" />
+<meta name="twitter:creator" content="Van11y" />
+
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<body role="document">
+
+
+<div id="page" class="mw960e" role="main">
+
+ <br>
+ <div class="aligncenter">
+ 	<a href="https://van11y.net/fr/" class="logo-link"><img src="https://van11y.net/layout/images/logo-van11y.svg" alt="Retour à la page d’accueil" width="267" height="90" class="logo" /></a>
+ </div>
+ <br>
+
+ <h1 class="aligncenter">Démo&#160;: fenêtre modale accessible utilisant <abbr title="Accessible Rich Internet Applications" lang="en" xml:lang="en">ARIA</abbr> en Vanilla <abbr title="JavaScript" lang="en" xml:lang="en">JS</abbr></h1>
+
+ <p>
+ 	<button class="js-modal button" data-modal-prefix-class="simple" data-modal-text="Bonjour tout le monde" data-modal-title="Titre" data-modal-close-text="Fermer" data-modal-close-title="Fermer cette fenêtre">Montre-moi une modale</button>
+ </p>
+ 
+ <p><button class="js-modal button" data-modal-prefix-class="simple-animated" data-modal-content-id="modal_id_2nd_example" data-modal-title="Titre de la modale" data-modal-close-text="Fermer" data-modal-close-title="Fermer, vraiment">Montre-moi une autre modale</button></p>
+ 
+    <div id="modal_id_2nd_example" class="hidden">
+      <p>Waouh, on peut prendre le contenu d’une <code tabindex="0">div</code> cachée (et tester le piège à focus clavier).</p>
+      <p>On peut aussi tester avec un loooooooooong…<br><br><br><br><br><br><br><br><br>contenu.</p>
+    </div>
+    
+  
+   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="C’est si facile" data-modal-close-text="Fermer la modale" data-modal-close-title="Fermer cette fenêtre" data-modal-close-img="close.svg" id="label_modal_6">C’est si facile</button></p>
+  
+  <div id="informations_other" class="hidden">
+     <p>C’est si facile.</p>
+     <p>Styler des composants de modale peut être fait pour des sites responsive (essayez de redimensionner).</p>
+    </div>
+  
+  
+<div class="footer" role="contentinfo"><br>Cette démo est un exemple de <a href="https://van11y.net/fr/modale-accessible/" class="link">fenêtre modale accessible Van11y utilisant <abbr title="Accessible Rich Internet Applications" lang="en" xml:lang="en">ARIA</abbr></a>.<br></div>
+
+</div>
+<script src="../dist/van11y-accessible-modal-window-aria.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "title": "Van11y accessible modal window system using ARIA",
+  "name": "van11y-accessible-modal-window-aria",
+  "description": "ES2015 accessible modal window system, using ARIA (compatible IE9+ when transpiled)",
+  "main": "dist/van11y-accessible-modal-window-aria.min.js",
+  "version": "1.0.0",
+  "keywords": [
+    "Accessibility",
+    "ARIA",
+    "modal",
+    "a11y",
+    "ES6",
+    "ES2015",
+    "Vanilla Javascript Plugin"
+  ],
+  "scripts": {
+    "build": "gulp",
+    "build:es5": "gulp es5"
+  },
+  "author": [
+    {
+      "name": "Nicolas Hoffmann",
+      "email": "dante3333@gmail.com",
+      "web": "https://www.nicolas-hoffmann.net/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/nico3333fr/van11y-accessible-modal-window-aria/issues"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/nico3333fr/van11y-accessible-modal-window-aria.git"
+    }
+  ],
+  "license": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/nico3333fr/van11y-accessible-modal-window-aria/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "https://van11y.net/accessible-modal/",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "gulp-header": "^1.7.1"
+  }
+}
