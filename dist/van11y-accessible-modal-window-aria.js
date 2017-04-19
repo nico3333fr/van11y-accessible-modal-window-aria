@@ -87,7 +87,7 @@
         while (el.firstChild)
             wrapper_el.append(el.firstChild);
         el.append(wrapper_el);
-     }*/
+      }*/
     function wrapInner(parent, wrapper) {
         if (typeof wrapper === "string") wrapper = document.createElement(wrapper);
 
@@ -297,7 +297,7 @@
                     var body = doc.querySelector('body');
                     var wrapperBody = findById(WRAPPER_PAGE_JS);
                     var modal = findById(MODAL_JS_ID);
-                    var modalContent = findById(MODAL_CONTENT_JS_ID);
+                    var modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
                     var overlay = findById(MODAL_OVERLAY_ID);
                     var modalButtonClose = findById(MODAL_BUTTON_JS_ID);
                     var modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);

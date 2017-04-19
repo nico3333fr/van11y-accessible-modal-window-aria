@@ -366,7 +366,7 @@
                         let body = doc.querySelector('body');
                         let wrapperBody = findById(WRAPPER_PAGE_JS);
                         let modal = findById(MODAL_JS_ID);
-                        let modalContent = findById(MODAL_CONTENT_JS_ID);
+                        let modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
                         let overlay = findById(MODAL_OVERLAY_ID);
                         let modalButtonClose = findById(MODAL_BUTTON_JS_ID);
                         let modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
