@@ -55,6 +55,8 @@
     var ATTR_LABELLEDBY = 'aria-labelledby';
     var ATTR_HIDDEN = 'aria-hidden';
     var ATTR_MODAL = 'aria-modal="true"';
+    var ATTR_HASPOPUP = 'aria-haspopup';
+    var ATTR_HASPOPUP_VALUE = 'dialog';
 
     var findById = function findById(id) {
         return doc.getElementById(id);
@@ -131,7 +133,7 @@
         var overlayClass = config.prefixClass + MODAL_OVERLAY_CLASS_SUFFIX;
         var overlayBackgroundEnabled = config.backgroundEnabled === 'disabled' ? 'disabled' : 'enabled';
 
-        return '<span \n                  id="' + id + '"\n                  class="' + overlayClass + '"\n                  ' + MODAL_OVERLAY_BG_ENABLED_ATTR + '="' + overlayBackgroundEnabled + '" \n                  title="' + overlayText + '"\n                  >\n                  <span class="' + VISUALLY_HIDDEN_CLASS + '">' + overlayText + '</span>\n                </span>';
+        return '<span\n                  id="' + id + '"\n                  class="' + overlayClass + '"\n                  ' + MODAL_OVERLAY_BG_ENABLED_ATTR + '="' + overlayBackgroundEnabled + '"\n                  title="' + overlayText + '"\n                  >\n                  <span class="' + VISUALLY_HIDDEN_CLASS + '">' + overlayText + '</span>\n                </span>';
     };
 
     /**
@@ -144,24 +146,24 @@
         var id = MODAL_JS_ID;
         var modalClassName = config.modalPrefixClass + MODAL_CLASS_SUFFIX;
         var buttonCloseClassName = config.modalPrefixClass + MODAL_BUTTON_CLASS_SUFFIX;
-        var buttonCloseInner = config.modalCloseImgPath ? '<img\n                                        src="' + config.modalCloseImgPath + '" \n                                        alt="' + config.modalCloseText + '" \n                                        class="' + MODAL_CLOSE_IMG_CLASS_SUFFIX + '"\n                                        />' : '<span \n                                        class="' + MODAL_CLOSE_TEXT_CLASS_SUFFIX + '">\n                                        ' + config.modalCloseText + '\n                                       </span>';
+        var buttonCloseInner = config.modalCloseImgPath ? '<img\n                                        src="' + config.modalCloseImgPath + '"\n                                        alt="' + config.modalCloseText + '"\n                                        class="' + MODAL_CLOSE_IMG_CLASS_SUFFIX + '"\n                                        />' : '<span\n                                        class="' + MODAL_CLOSE_TEXT_CLASS_SUFFIX + '">\n                                        ' + config.modalCloseText + '\n                                       </span>';
         var contentClassName = config.modalPrefixClass + MODAL_CONTENT_CLASS_SUFFIX;
         var titleClassName = config.modalPrefixClass + MODAL_TITLE_CLASS_SUFFIX;
-        var title = config.modalTitle !== '' ? '<h1 \n                                        id="' + MODAL_TITLE_ID + '" \n                                        class="' + titleClassName + '">\n                                        ' + config.modalTitle + '\n                                       </h1>' : '';
-        var button_close = '<button \n                             type="button"\n                             class="' + MODAL_BUTTON_JS_CLASS + ' ' + buttonCloseClassName + '"\n                             id="' + MODAL_BUTTON_JS_ID + '"\n                             title="' + config.modalCloseTitle + '"\n                             ' + MODAL_BUTTON_CONTENT_BACK_ID + '="' + config.modalContentId + '"\n                             ' + MODAL_BUTTON_FOCUS_BACK_ID + '="' + config.modalFocusBackId + '"\n                             >\n                             ' + buttonCloseInner + '\n                            </button>';
+        var title = config.modalTitle !== '' ? '<h1\n                                        id="' + MODAL_TITLE_ID + '"\n                                        class="' + titleClassName + '">\n                                        ' + config.modalTitle + '\n                                       </h1>' : '';
+        var button_close = '<button\n                             type="button"\n                             class="' + MODAL_BUTTON_JS_CLASS + ' ' + buttonCloseClassName + '"\n                             id="' + MODAL_BUTTON_JS_ID + '"\n                             title="' + config.modalCloseTitle + '"\n                             ' + MODAL_BUTTON_CONTENT_BACK_ID + '="' + config.modalContentId + '"\n                             ' + MODAL_BUTTON_FOCUS_BACK_ID + '="' + config.modalFocusBackId + '"\n                             >\n                             ' + buttonCloseInner + '\n                            </button>';
         var content = config.modalText;
 
         // If there is no content but an id we try to fetch content id
         if (content === '' && config.modalContentId) {
             var contentFromId = findById(config.modalContentId);
             if (contentFromId) {
-                content = '<div \n                            id="' + MODAL_CONTENT_JS_ID + '">\n                            ' + contentFromId.innerHTML + '\n                           </div';
+                content = '<div\n                            id="' + MODAL_CONTENT_JS_ID + '">\n                            ' + contentFromId.innerHTML + '\n                           </div';
                 // we remove content from its source to avoid id duplicates, etc.
                 contentFromId.innerHTML = '';
             }
         }
 
-        return '<dialog \n                  id="' + id + '"\n                  ' + ATTR_ROLE + '="' + MODAL_ROLE + '"\n                  class="' + modalClassName + '"\n                  ' + ATTR_OPEN + '\n                  ' + ATTR_MODAL + '\n                  ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '"\n                  >\n                  <div role="document">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
+        return '<dialog\n                  id="' + id + '"\n                  ' + ATTR_ROLE + '="' + MODAL_ROLE + '"\n                  class="' + modalClassName + '"\n                  ' + ATTR_OPEN + '\n                  ' + ATTR_MODAL + '\n                  ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '"\n                  >\n                  <div role="document">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
     };
 
     var closeModal = function closeModal(config) {
@@ -198,6 +200,7 @@
             var body = doc.querySelector('body');
 
             modal_node.setAttribute('id', MODAL_ID_PREFIX + iLisible);
+            modal_node.setAttribute(ATTR_HASPOPUP, ATTR_HASPOPUP_VALUE);
 
             if (wrapperBody === null || wrapperBody.length === 0) {
                 var wrapper = doc.createElement('DIV');
@@ -322,7 +325,7 @@
                         removeClass(body, NO_SCROLL_CLASS);
                     }
 
-                    // tab or Maj Tab in modal => capture focus            
+                    // tab or Maj Tab in modal => capture focus
                     if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
 
                         // maj-tab on first element focusable => focus on last

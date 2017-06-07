@@ -53,6 +53,8 @@
     const ATTR_LABELLEDBY = 'aria-labelledby';
     const ATTR_HIDDEN = 'aria-hidden';
     const ATTR_MODAL = 'aria-modal="true"';
+    const ATTR_HASPOPUP = 'aria-haspopup';
+    const ATTR_HASPOPUP_VALUE = 'dialog';
 
 
 
@@ -96,11 +98,11 @@
     while(parent.firstChild !== wrapper)
         wrapper.appendChild(parent.firstChild);
     }
-    
+
     function remove(el) { /* node.remove() is too modern for IE≤11 */
       el.parentNode.removeChild(el);
     }
-    
+
     /* gets an element el, search if it is child of parent class, returns id of the parent */
     let searchParent = (el, parentClass) => {
         let found = false;
@@ -131,10 +133,10 @@
         let overlayClass = config.prefixClass + MODAL_OVERLAY_CLASS_SUFFIX;
         let overlayBackgroundEnabled = config.backgroundEnabled === 'disabled' ? 'disabled' : 'enabled';
 
-        return `<span 
+        return `<span
                   id="${id}"
                   class="${overlayClass}"
-                  ${MODAL_OVERLAY_BG_ENABLED_ATTR}="${overlayBackgroundEnabled}" 
+                  ${MODAL_OVERLAY_BG_ENABLED_ATTR}="${overlayBackgroundEnabled}"
                   title="${overlayText}"
                   >
                   <span class="${VISUALLY_HIDDEN_CLASS}">${overlayText}</span>
@@ -154,24 +156,24 @@
         let buttonCloseClassName = config.modalPrefixClass + MODAL_BUTTON_CLASS_SUFFIX;
         let buttonCloseInner = config.modalCloseImgPath ?
                                       `<img
-                                        src="${config.modalCloseImgPath}" 
-                                        alt="${config.modalCloseText}" 
+                                        src="${config.modalCloseImgPath}"
+                                        alt="${config.modalCloseText}"
                                         class="${MODAL_CLOSE_IMG_CLASS_SUFFIX}"
                                         />` :
-                                      `<span 
+                                      `<span
                                         class="${MODAL_CLOSE_TEXT_CLASS_SUFFIX}">
                                         ${config.modalCloseText}
                                        </span>`;
         let contentClassName = config.modalPrefixClass + MODAL_CONTENT_CLASS_SUFFIX;
         let titleClassName = config.modalPrefixClass + MODAL_TITLE_CLASS_SUFFIX;
         let title = config.modalTitle !== '' ?
-                                      `<h1 
-                                        id="${MODAL_TITLE_ID}" 
+                                      `<h1
+                                        id="${MODAL_TITLE_ID}"
                                         class="${titleClassName}">
                                         ${config.modalTitle}
                                        </h1>` :
                                        '';
-        let button_close = `<button 
+        let button_close = `<button
                              type="button"
                              class="${MODAL_BUTTON_JS_CLASS} ${buttonCloseClassName}"
                              id="${MODAL_BUTTON_JS_ID}"
@@ -187,7 +189,7 @@
         if (content === '' && config.modalContentId) {
             let contentFromId = findById(config.modalContentId);
             if (contentFromId) {
-                content = `<div 
+                content = `<div
                             id="${MODAL_CONTENT_JS_ID}">
                             ${contentFromId.innerHTML}
                            </div`;
@@ -198,7 +200,7 @@
         }
 
 
-        return `<dialog 
+        return `<dialog
                   id="${id}"
                   ${ATTR_ROLE}="${MODAL_ROLE}"
                   class="${modalClassName}"
@@ -253,6 +255,7 @@
                 let body = doc.querySelector('body');
 
                 modal_node.setAttribute('id', MODAL_ID_PREFIX + iLisible);
+                modal_node.setAttribute(ATTR_HASPOPUP, ATTR_HASPOPUP_VALUE);
 
                 if (wrapperBody === null || wrapperBody.length === 0) {
                     let wrapper = doc.createElement('DIV');
@@ -264,7 +267,7 @@
             });
 
 
-        // click on 
+        // click on
         ['click', 'keydown']
         .forEach(eventName => {
 
@@ -325,7 +328,7 @@
                     let parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
                     if (
                         (
-                            e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' || 
+                            e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' ||
                             e.target.getAttribute('id') === MODAL_OVERLAY_ID
                         ) &&
                         eventName === 'click'
@@ -373,7 +376,7 @@
                         let contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
                         let $listFocusables = [].slice.call(modal.querySelectorAll(FOCUSABLE_ELEMENTS_STRING));
 
-                        // esc 
+                        // esc
                         if (e.keyCode === 27) {
 
                             closeModal({
@@ -391,7 +394,7 @@
                             removeClass(body, NO_SCROLL_CLASS);
                         }
 
-                        // tab or Maj Tab in modal => capture focus             
+                        // tab or Maj Tab in modal => capture focus
                         if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
 
                             // maj-tab on first element focusable => focus on last
