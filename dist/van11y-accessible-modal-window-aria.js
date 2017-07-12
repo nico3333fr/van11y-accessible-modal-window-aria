@@ -215,9 +215,10 @@
             doc.body.addEventListener(eventName, function (e) {
 
                 // click on link modal
-                if (hasClass(e.target, MODAL_JS_CLASS) === true && eventName === 'click') {
+                var parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
+                if ((hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
                     var body = doc.querySelector('body');
-                    var modalLauncher = e.target;
+                    var modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
                     var modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
                     var modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
                     var modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';

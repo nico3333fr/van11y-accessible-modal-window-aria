@@ -275,9 +275,10 @@
                 .addEventListener(eventName, e => {
 
                     // click on link modal
-                    if ((hasClass(e.target, MODAL_JS_CLASS) === true) && eventName === 'click') {
+                    let parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
+                    if ( (hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
                         let body = doc.querySelector('body');
-                        let modalLauncher = e.target;
+                        let modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
                         let modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
                         let modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
                         let modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';
