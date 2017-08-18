@@ -163,7 +163,7 @@
             }
         }
 
-        return '<dialog\n                  id="' + id + '"\n                  ' + ATTR_ROLE + '="' + MODAL_ROLE + '"\n                  class="' + modalClassName + '"\n                  ' + ATTR_OPEN + '\n                  ' + ATTR_MODAL + '\n                  ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '"\n                  >\n                  <div role="document">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
+        return '<dialog\n                  id="' + id + '"\n                  class="' + modalClassName + '"\n                  ' + ATTR_OPEN + '\n                  ' + ATTR_MODAL + '\n                  ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '"\n                  >\n                  <div role="document">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
     };
 
     var closeModal = function closeModal(config) {

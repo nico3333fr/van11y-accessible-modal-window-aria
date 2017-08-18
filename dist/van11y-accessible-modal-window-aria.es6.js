@@ -202,7 +202,6 @@
 
         return `<dialog
                   id="${id}"
-                  ${ATTR_ROLE}="${MODAL_ROLE}"
                   class="${modalClassName}"
                   ${ATTR_OPEN}
                   ${ATTR_MODAL}
