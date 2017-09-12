@@ -13,7 +13,7 @@ If you know Gulp, ES2015, NPM, etc. modify the file in ```src``` folder and run 
 Else, go to ```dist``` folder: 
 
 - in a near future, you will be able to use the ES6/ES2015 version. For the moment, do not use it, except if you know what you are doing.
-- for the moment, you may use the transpiled version, minified or not, it will have the best compatibility (it is what I used in the demo and in production: https://van11y.net/downloads/modal/demo/index-fr.html ).
+- for the moment, you may use the transpiled version, minified or not, it will have the best compatibility (it is what I used in the demo and in production: https://van11y.net/downloads/modal/demo/index.html or demo in french  https://van11y.net/downloads/modal/demo/index-fr.html ).
 
 Enjoy ;)
 
