@@ -50,6 +50,10 @@ First, put <code>class="js-modal"</code> on a button or a link to activate the s
 
 Remember there are some demos, it will be easier to understand: <a href="https://van11y.net/downloads/modal/demo/index.html">Demo of accessible modal window</a>
 
+The script is launched when the page is loaded. If you need to execute it on AJAX-inserted content, you may use for example on <div id="newContent">your modal launcher source</div>:
+
+van11yAccessibleModalWindowAria(document.getElementById('newContent'));
+
 ## Minimal styling classes
 
 Here is the minimal set of styles needed to make it work (without data-modal-prefix-class attribute):
