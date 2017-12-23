@@ -274,7 +274,7 @@
 
             // click on close button or on overlay not blocked
             var parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
-            if ((e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' || e.target.getAttribute('id') === MODAL_OVERLAY_ID) && eventName === 'click') {
+            if ((e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' || e.target.getAttribute('id') === MODAL_OVERLAY_ID || hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true) && eventName === 'click') {
                 var body = doc.querySelector('body');
                 var wrapperBody = findById(WRAPPER_PAGE_JS);
                 var modal = findById(MODAL_JS_ID);

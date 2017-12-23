@@ -316,7 +316,8 @@
                 if (
                     (
                         e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' ||
-                        e.target.getAttribute('id') === MODAL_OVERLAY_ID
+                        e.target.getAttribute('id') === MODAL_OVERLAY_ID ||
+                        hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true
                     ) &&
                     eventName === 'click'
                 ) {
