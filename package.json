@@ -3,7 +3,7 @@
   "name": "van11y-accessible-modal-window-aria",
   "description": "ES2015 accessible modal window system, using ARIA (compatible IE9+ when transpiled)",
   "main": "dist/van11y-accessible-modal-window-aria.min.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "keywords": [
     "Accessibility",
     "ARIA",
@@ -33,12 +33,7 @@
       "url": "https://github.com/nico3333fr/van11y-accessible-modal-window-aria.git"
     }
   ],
-  "license": [
-    {
-      "name": "MIT",
-      "url": "https://github.com/nico3333fr/van11y-accessible-modal-window-aria/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "homepage": "https://van11y.net/accessible-modal/",
   "devDependencies": {
     "gulp": "^3.9.0",
