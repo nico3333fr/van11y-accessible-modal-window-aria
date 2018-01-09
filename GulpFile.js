@@ -9,7 +9,7 @@ var banner = ['/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',
   ' * @version v<%= pkg.version %>',
   ' * @link <%= pkg.homepage %>',
-  ' * @license ' + pkg.license[0].name + ' : ' + pkg.license[0].url + '',
+  ' * @license <%= pkg.license %> : https://github.com/nico3333fr/van11y-accessible-modal-window-aria/blob/master/LICENSE',
   ' */',
   ''].join('\n');
 	
