@@ -201,10 +201,14 @@ dialog {
 .simple-animated-modal {
   position: fixed;
   left: 15%;
-  top: 5%;
   width: 70%;
-  max-height: 98vh;
-  /*margin: 0 auto;*/
+  top: 5vh;
+  max-height: 90vh;
+  /*
+  If you have problems with vh units 
+  top: 5%;
+  max-height: 90%;
+  */
   border: 2px solid #000; 
   background: #fff;
   z-index: 667;
