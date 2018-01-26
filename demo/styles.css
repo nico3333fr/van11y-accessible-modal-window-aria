@@ -20,12 +20,12 @@ body {
 @font-face {
     /*font-family: 'robotoregular';*/
     font-family: 'roboto';
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.eot');
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.woff2') format('woff2'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.woff') format('woff'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.ttf') format('truetype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Regular-webfont_20180126.svg#robotoregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -34,12 +34,12 @@ body {
 @font-face {
     /*font-family: 'robotobold';*/
     font-family: 'roboto';
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.eot');
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.woff2') format('woff2'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.woff') format('woff'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.ttf') format('truetype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont.svg#robotobold') format('svg');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Bold-webfont_20180126.svg#robotobold') format('svg');
     font-weight: bold;
     font-style: normal;
 
@@ -48,12 +48,12 @@ body {
 @font-face {
     /*font-family: 'robotoitalic';*/
     font-family: 'roboto';
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.eot');
-    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.woff2') format('woff2'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.woff') format('woff'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.ttf') format('truetype'),
-         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont.svg#robotoitalic') format('svg');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.eot');
+    src: url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.eot?#iefix') format('embedded-opentype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.woff2') format('woff2'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.woff') format('woff'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.ttf') format('truetype'),
+         url('https://van11y.net/layout/css/fonts/Roboto-Italic-webfont_20180126.svg#robotoitalic') format('svg');
     font-weight: normal;
     font-style: italic;
 
