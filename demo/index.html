@@ -59,11 +59,11 @@
     </div>
     
   
-   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="It’s easy to use" data-modal-close-text="Close it" data-modal-close-title="Close this window" data-modal-close-img="close.svg" id="label_modal_6">It’s easy</button></p>
+   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="It’s easy to use" data-modal-close-text="Close it" data-modal-close-title="Close this window" data-modal-close-img="close.svg" id="label_modal_6" data-modal-focus-toid="gimmefocusplease">It’s easy (gives focus to an element in the modal)</button></p>
   
   <div id="informations_other" class="hidden">
      <p>It’s so easy.</p>
-     <p>Styling modal components can be made for responsive websites (try to resize).</p>
+     <p tabindex="0" id="gimmefocusplease">Styling modal components can be made for responsive websites (try to resize).</p>
      <p><button class="js-modal-close button">A button to close it</button></p>
     </div>
   

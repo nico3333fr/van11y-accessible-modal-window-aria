@@ -15,6 +15,7 @@
     const MODAL_TEXT_ATTR = 'data-modal-text';
     const MODAL_CONTENT_ID_ATTR = 'data-modal-content-id';
     const MODAL_TITLE_ATTR = 'data-modal-title';
+    const MODAL_FOCUS_TO_ATTR = 'data-modal-focus-toid';
     const MODAL_CLOSE_TEXT_ATTR = 'data-modal-close-text';
     const MODAL_CLOSE_TITLE_ATTR = 'data-modal-close-title';
     const MODAL_CLOSE_IMG_ATTR = 'data-modal-close-img';
@@ -232,7 +233,7 @@
      * Build modals for a container
      * @param  {Node} node
      */
-    const attach = (node) => {
+    const attach = (node, addListeners = true) => {
 
         $listModals(node)
             .forEach((modal_node) => {
@@ -253,171 +254,188 @@
 
             });
 
-    };
+        if (addListeners) {
 
-    /* listeners */
-    ['click', 'keydown']
-    .forEach(eventName => {
+            /* listeners */
+            ['click', 'keydown']
+            .forEach(eventName => {
 
-        doc.body
-            .addEventListener(eventName, e => {
+                doc.body
+                    .addEventListener(eventName, e => {
 
-                // click on link modal
-                let parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
-                if ((hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
-                    let body = doc.querySelector('body');
-                    let modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
-                    let modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
-                    let modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
-                    let modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';
-                    let modalTitle = modalLauncher.hasAttribute(MODAL_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_TITLE_ATTR) : '';
-                    let modalCloseText = modalLauncher.hasAttribute(MODAL_CLOSE_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TEXT_ATTR) : MODAL_OVERLAY_TXT;
-                    let modalCloseTitle = modalLauncher.hasAttribute(MODAL_CLOSE_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TITLE_ATTR) : modalCloseText;
-                    let modalCloseImgPath = modalLauncher.hasAttribute(MODAL_CLOSE_IMG_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_IMG_ATTR) : '';
-                    let backgroundEnabled = modalLauncher.hasAttribute(MODAL_DATA_BACKGROUND_ATTR) === true ? modalLauncher.getAttribute(MODAL_DATA_BACKGROUND_ATTR) : '';
+                        // click on link modal
+                        let parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
+                        if ((hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
+                            let body = doc.querySelector('body');
+                            let modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
+                            let modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
+                            let modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
+                            let modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';
+                            let modalTitle = modalLauncher.hasAttribute(MODAL_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_TITLE_ATTR) : '';
+                            let modalCloseText = modalLauncher.hasAttribute(MODAL_CLOSE_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TEXT_ATTR) : MODAL_OVERLAY_TXT;
+                            let modalCloseTitle = modalLauncher.hasAttribute(MODAL_CLOSE_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TITLE_ATTR) : modalCloseText;
+                            let modalCloseImgPath = modalLauncher.hasAttribute(MODAL_CLOSE_IMG_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_IMG_ATTR) : '';
+                            let backgroundEnabled = modalLauncher.hasAttribute(MODAL_DATA_BACKGROUND_ATTR) === true ? modalLauncher.getAttribute(MODAL_DATA_BACKGROUND_ATTR) : '';
+                            let modalGiveFocusToId = modalLauncher.hasAttribute(MODAL_FOCUS_TO_ATTR) === true ? modalLauncher.getAttribute(MODAL_FOCUS_TO_ATTR) : '';
 
-                    let wrapperBody = findById(WRAPPER_PAGE_JS);
+                            let wrapperBody = findById(WRAPPER_PAGE_JS);
 
-                    // insert overlay
-                    body.insertAdjacentHTML('beforeEnd', createOverlay({
-                        text: modalCloseTitle,
-                        backgroundEnabled: backgroundEnabled,
-                        prefixClass: modalPrefixClass
-                    }));
+                            // insert overlay
+                            body.insertAdjacentHTML('beforeEnd', createOverlay({
+                                text: modalCloseTitle,
+                                backgroundEnabled: backgroundEnabled,
+                                prefixClass: modalPrefixClass
+                            }));
 
-                    // insert modal
-                    body.insertAdjacentHTML('beforeEnd', createModal({
-                        modalText: modalText,
-                        modalPrefixClass: modalPrefixClass,
-                        backgroundEnabled: modalContentId,
-                        modalTitle: modalTitle,
-                        modalCloseText: modalCloseText,
-                        modalCloseTitle: modalCloseTitle,
-                        modalCloseImgPath: modalCloseImgPath,
-                        modalContentId: modalContentId,
-                        modalFocusBackId: modalLauncher.getAttribute('id')
-                    }));
+                            // insert modal
+                            body.insertAdjacentHTML('beforeEnd', createModal({
+                                modalText: modalText,
+                                modalPrefixClass: modalPrefixClass,
+                                backgroundEnabled: modalContentId,
+                                modalTitle: modalTitle,
+                                modalCloseText: modalCloseText,
+                                modalCloseTitle: modalCloseTitle,
+                                modalCloseImgPath: modalCloseImgPath,
+                                modalContentId: modalContentId,
+                                modalFocusBackId: modalLauncher.getAttribute('id')
+                            }));
 
-                    // hide page
-                    wrapperBody.setAttribute(ATTR_HIDDEN, 'true');
+                            // hide page
+                            wrapperBody.setAttribute(ATTR_HIDDEN, 'true');
 
-                    // add class noscroll to body
-                    addClass(body, NO_SCROLL_CLASS);
+                            // add class noscroll to body
+                            addClass(body, NO_SCROLL_CLASS);
 
-                    // give focus to close button
-                    let closeButton = findById(MODAL_BUTTON_JS_ID)
-                    closeButton.focus();
-
-                    e.preventDefault();
-
-                }
-
-
-                // click on close button or on overlay not blocked
-                let parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
-                if (
-                    (
-                        e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' ||
-                        e.target.getAttribute('id') === MODAL_OVERLAY_ID ||
-                        hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true
-                    ) &&
-                    eventName === 'click'
-                ) {
-                    let body = doc.querySelector('body');
-                    let wrapperBody = findById(WRAPPER_PAGE_JS);
-                    let modal = findById(MODAL_JS_ID);
-                    let modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
-                    let overlay = findById(MODAL_OVERLAY_ID);
-                    let modalButtonClose = findById(MODAL_BUTTON_JS_ID);
-                    let modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
-                    let contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
-                    let backgroundEnabled = overlay.getAttribute(MODAL_OVERLAY_BG_ENABLED_ATTR);
-
-                    if (!(e.target.getAttribute('id') === MODAL_OVERLAY_ID && backgroundEnabled === 'disabled')) {
-
-                        closeModal({
-                            modal: modal,
-                            modalContent: modalContent,
-                            overlay: overlay,
-                            modalFocusBackId: modalFocusBackId,
-                            contentBackId: contentBackId,
-                            backgroundEnabled: backgroundEnabled,
-                            fromId: e.target.getAttribute('id')
-                        });
-
-                        // show back page
-                        wrapperBody.removeAttribute(ATTR_HIDDEN);
-
-                        // remove class noscroll to body
-                        removeClass(body, NO_SCROLL_CLASS);
-
-                    }
-                }
-
-                // strike a key when modal opened
-                if (findById(MODAL_JS_ID) && eventName === 'keydown') {
-                    let body = doc.querySelector('body');
-                    let wrapperBody = findById(WRAPPER_PAGE_JS);
-                    let modal = findById(MODAL_JS_ID);
-                    let modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
-                    let overlay = findById(MODAL_OVERLAY_ID);
-                    let modalButtonClose = findById(MODAL_BUTTON_JS_ID);
-                    let modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
-                    let contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
-                    let $listFocusables = [].slice.call(modal.querySelectorAll(FOCUSABLE_ELEMENTS_STRING));
-
-                    // esc
-                    if (e.keyCode === 27) {
-
-                        closeModal({
-                            modal: modal,
-                            modalContent: modalContent,
-                            overlay: overlay,
-                            modalFocusBackId: modalFocusBackId,
-                            contentBackId: contentBackId,
-                        });
-
-                        // show back page
-                        wrapperBody.removeAttribute(ATTR_HIDDEN);
-
-                        // remove class noscroll to body
-                        removeClass(body, NO_SCROLL_CLASS);
-                    }
-
-                    // tab or Maj Tab in modal => capture focus
-                    if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
-
-                        // maj-tab on first element focusable => focus on last
-                        if (e.shiftKey) {
-                            if (e.target === $listFocusables[0]) {
-                                $listFocusables[$listFocusables.length - 1].focus();
-                                e.preventDefault();
+                            // give focus to close button or specified element
+                            let closeButton = findById(MODAL_BUTTON_JS_ID);
+                            if (modalGiveFocusToId !== '') {
+                                let focusTo = findById(modalGiveFocusToId);
+                                if (focusTo) {
+                                    focusTo.focus();
+                                } else {
+                                    closeButton.focus();
+                                }
+                            } else {
+                                closeButton.focus();
                             }
-                        } else {
-                            // tab on last element focusable => focus on first
-                            if (e.target === $listFocusables[$listFocusables.length - 1]) {
-                                $listFocusables[0].focus();
-                                e.preventDefault();
+
+                            e.preventDefault();
+
+                        }
+
+
+                        // click on close button or on overlay not blocked
+                        let parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
+                        if (
+                            (
+                                e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' ||
+                                e.target.getAttribute('id') === MODAL_OVERLAY_ID ||
+                                hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true
+                            ) &&
+                            eventName === 'click'
+                        ) {
+                            let body = doc.querySelector('body');
+                            let wrapperBody = findById(WRAPPER_PAGE_JS);
+                            let modal = findById(MODAL_JS_ID);
+                            let modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
+                            let overlay = findById(MODAL_OVERLAY_ID);
+                            let modalButtonClose = findById(MODAL_BUTTON_JS_ID);
+                            let modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
+                            let contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
+                            let backgroundEnabled = overlay.getAttribute(MODAL_OVERLAY_BG_ENABLED_ATTR);
+
+                            if (!(e.target.getAttribute('id') === MODAL_OVERLAY_ID && backgroundEnabled === 'disabled')) {
+
+                                closeModal({
+                                    modal: modal,
+                                    modalContent: modalContent,
+                                    overlay: overlay,
+                                    modalFocusBackId: modalFocusBackId,
+                                    contentBackId: contentBackId,
+                                    backgroundEnabled: backgroundEnabled,
+                                    fromId: e.target.getAttribute('id')
+                                });
+
+                                // show back page
+                                wrapperBody.removeAttribute(ATTR_HIDDEN);
+
+                                // remove class noscroll to body
+                                removeClass(body, NO_SCROLL_CLASS);
+
                             }
                         }
 
-                    }
+                        // strike a key when modal opened
+                        if (findById(MODAL_JS_ID) && eventName === 'keydown') {
+                            let body = doc.querySelector('body');
+                            let wrapperBody = findById(WRAPPER_PAGE_JS);
+                            let modal = findById(MODAL_JS_ID);
+                            let modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
+                            let overlay = findById(MODAL_OVERLAY_ID);
+                            let modalButtonClose = findById(MODAL_BUTTON_JS_ID);
+                            let modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
+                            let contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
+                            let $listFocusables = [].slice.call(modal.querySelectorAll(FOCUSABLE_ELEMENTS_STRING));
 
-                    // tab outside modal => put it in focus
-                    if (e.keyCode === 9 && $listFocusables.indexOf(e.target) === -1) {
-                        e.preventDefault();
-                        $listFocusables[0].focus();
-                    }
+                            // esc
+                            if (e.keyCode === 27) {
+
+                                closeModal({
+                                    modal: modal,
+                                    modalContent: modalContent,
+                                    overlay: overlay,
+                                    modalFocusBackId: modalFocusBackId,
+                                    contentBackId: contentBackId,
+                                });
+
+                                // show back page
+                                wrapperBody.removeAttribute(ATTR_HIDDEN);
+
+                                // remove class noscroll to body
+                                removeClass(body, NO_SCROLL_CLASS);
+                            }
+
+                            // tab or Maj Tab in modal => capture focus
+                            if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
+
+                                // maj-tab on first element focusable => focus on last
+                                if (e.shiftKey) {
+                                    if (e.target === $listFocusables[0]) {
+                                        $listFocusables[$listFocusables.length - 1].focus();
+                                        e.preventDefault();
+                                    }
+                                } else {
+                                    // tab on last element focusable => focus on first
+                                    if (e.target === $listFocusables[$listFocusables.length - 1]) {
+                                        $listFocusables[0].focus();
+                                        e.preventDefault();
+                                    }
+                                }
+
+                            }
+
+                            // tab outside modal => put it in focus
+                            if (e.keyCode === 9 && $listFocusables.indexOf(e.target) === -1) {
+                                e.preventDefault();
+                                $listFocusables[0].focus();
+                            }
 
 
-                }
+                        }
 
 
 
 
-            }, true);
+                    }, true);
 
-    });
+            });
+
+
+        }
+
+    };
+
+
 
     const onLoad = () => {
         attach();

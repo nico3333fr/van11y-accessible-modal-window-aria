@@ -3,7 +3,7 @@
   "description": "ES2015 accessible modal window system, using ARIA (compatible IE9+ when transpiled)",
   "homepage": "https://van11y.net/accessible-modal/",
   "main": "van11y-accessible-modal-window-aria.es6.js",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "keywords": [
     "Accessibility",
     "ARIA",

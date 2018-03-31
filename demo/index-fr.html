@@ -58,11 +58,11 @@
       <p>Waouh, avec les transformations <abbr title="Cascading Style Sheet" lang="en">CSS</abbr>, c’est plus fluide.</p>
     </div>
   
-   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="C’est si facile" data-modal-close-text="Fermer la modale" data-modal-close-title="Fermer cette fenêtre" data-modal-close-img="close.svg" id="label_modal_6">C’est si facile</button></p>
+   <p><button class="js-modal button" data-modal-prefix-class="simple-left" data-modal-content-id="informations_other" data-modal-title="C’est si facile" data-modal-close-text="Fermer la modale" data-modal-close-title="Fermer cette fenêtre" data-modal-close-img="close.svg" id="label_modal_6" data-modal-focus-toid="gimmefocusplease">C’est si facile (donner le focus à un élément dans la modale)</button></p>
   
   <div id="informations_other" class="hidden">
      <p>C’est si facile.</p>
-     <p>Styler des composants de modale peut être fait pour des sites responsive (essayez de redimensionner).</p>
+     <p tabindex="0" id="gimmefocusplease">Styler des composants de modale peut être fait pour des sites responsive (essayez de redimensionner).</p>
      <p><button class="js-modal-close button">Un button pour fermer</button></p>
     </div>
   

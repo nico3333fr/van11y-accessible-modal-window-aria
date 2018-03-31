@@ -17,6 +17,7 @@
     var MODAL_TEXT_ATTR = 'data-modal-text';
     var MODAL_CONTENT_ID_ATTR = 'data-modal-content-id';
     var MODAL_TITLE_ATTR = 'data-modal-title';
+    var MODAL_FOCUS_TO_ATTR = 'data-modal-focus-toid';
     var MODAL_CLOSE_TEXT_ATTR = 'data-modal-close-text';
     var MODAL_CLOSE_TITLE_ATTR = 'data-modal-close-title';
     var MODAL_CLOSE_IMG_ATTR = 'data-modal-close-img';
@@ -202,6 +203,7 @@
      * @param  {Node} node
      */
     var attach = function attach(node) {
+        var addListeners = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
         $listModals(node).forEach(function (modal_node) {
 
@@ -218,151 +220,164 @@
                 wrapInner(body, wrapper);
             }
         });
-    };
 
-    /* listeners */
-    ['click', 'keydown'].forEach(function (eventName) {
+        if (addListeners) {
 
-        doc.body.addEventListener(eventName, function (e) {
+            /* listeners */
+            ['click', 'keydown'].forEach(function (eventName) {
 
-            // click on link modal
-            var parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
-            if ((hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
-                var body = doc.querySelector('body');
-                var modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
-                var modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
-                var modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
-                var modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';
-                var modalTitle = modalLauncher.hasAttribute(MODAL_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_TITLE_ATTR) : '';
-                var modalCloseText = modalLauncher.hasAttribute(MODAL_CLOSE_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TEXT_ATTR) : MODAL_OVERLAY_TXT;
-                var modalCloseTitle = modalLauncher.hasAttribute(MODAL_CLOSE_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TITLE_ATTR) : modalCloseText;
-                var modalCloseImgPath = modalLauncher.hasAttribute(MODAL_CLOSE_IMG_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_IMG_ATTR) : '';
-                var backgroundEnabled = modalLauncher.hasAttribute(MODAL_DATA_BACKGROUND_ATTR) === true ? modalLauncher.getAttribute(MODAL_DATA_BACKGROUND_ATTR) : '';
+                doc.body.addEventListener(eventName, function (e) {
 
-                var wrapperBody = findById(WRAPPER_PAGE_JS);
+                    // click on link modal
+                    var parentModalLauncher = searchParent(e.target, MODAL_JS_CLASS);
+                    if ((hasClass(e.target, MODAL_JS_CLASS) === true || parentModalLauncher !== '') && eventName === 'click') {
+                        var body = doc.querySelector('body');
+                        var modalLauncher = parentModalLauncher !== '' ? findById(parentModalLauncher) : e.target;
+                        var modalPrefixClass = modalLauncher.hasAttribute(MODAL_PREFIX_CLASS_ATTR) === true ? modalLauncher.getAttribute(MODAL_PREFIX_CLASS_ATTR) + '-' : '';
+                        var modalText = modalLauncher.hasAttribute(MODAL_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_TEXT_ATTR) : '';
+                        var modalContentId = modalLauncher.hasAttribute(MODAL_CONTENT_ID_ATTR) === true ? modalLauncher.getAttribute(MODAL_CONTENT_ID_ATTR) : '';
+                        var modalTitle = modalLauncher.hasAttribute(MODAL_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_TITLE_ATTR) : '';
+                        var modalCloseText = modalLauncher.hasAttribute(MODAL_CLOSE_TEXT_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TEXT_ATTR) : MODAL_OVERLAY_TXT;
+                        var modalCloseTitle = modalLauncher.hasAttribute(MODAL_CLOSE_TITLE_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_TITLE_ATTR) : modalCloseText;
+                        var modalCloseImgPath = modalLauncher.hasAttribute(MODAL_CLOSE_IMG_ATTR) === true ? modalLauncher.getAttribute(MODAL_CLOSE_IMG_ATTR) : '';
+                        var backgroundEnabled = modalLauncher.hasAttribute(MODAL_DATA_BACKGROUND_ATTR) === true ? modalLauncher.getAttribute(MODAL_DATA_BACKGROUND_ATTR) : '';
+                        var modalGiveFocusToId = modalLauncher.hasAttribute(MODAL_FOCUS_TO_ATTR) === true ? modalLauncher.getAttribute(MODAL_FOCUS_TO_ATTR) : '';
 
-                // insert overlay
-                body.insertAdjacentHTML('beforeEnd', createOverlay({
-                    text: modalCloseTitle,
-                    backgroundEnabled: backgroundEnabled,
-                    prefixClass: modalPrefixClass
-                }));
+                        var wrapperBody = findById(WRAPPER_PAGE_JS);
 
-                // insert modal
-                body.insertAdjacentHTML('beforeEnd', createModal({
-                    modalText: modalText,
-                    modalPrefixClass: modalPrefixClass,
-                    backgroundEnabled: modalContentId,
-                    modalTitle: modalTitle,
-                    modalCloseText: modalCloseText,
-                    modalCloseTitle: modalCloseTitle,
-                    modalCloseImgPath: modalCloseImgPath,
-                    modalContentId: modalContentId,
-                    modalFocusBackId: modalLauncher.getAttribute('id')
-                }));
+                        // insert overlay
+                        body.insertAdjacentHTML('beforeEnd', createOverlay({
+                            text: modalCloseTitle,
+                            backgroundEnabled: backgroundEnabled,
+                            prefixClass: modalPrefixClass
+                        }));
 
-                // hide page
-                wrapperBody.setAttribute(ATTR_HIDDEN, 'true');
+                        // insert modal
+                        body.insertAdjacentHTML('beforeEnd', createModal({
+                            modalText: modalText,
+                            modalPrefixClass: modalPrefixClass,
+                            backgroundEnabled: modalContentId,
+                            modalTitle: modalTitle,
+                            modalCloseText: modalCloseText,
+                            modalCloseTitle: modalCloseTitle,
+                            modalCloseImgPath: modalCloseImgPath,
+                            modalContentId: modalContentId,
+                            modalFocusBackId: modalLauncher.getAttribute('id')
+                        }));
 
-                // add class noscroll to body
-                addClass(body, NO_SCROLL_CLASS);
+                        // hide page
+                        wrapperBody.setAttribute(ATTR_HIDDEN, 'true');
 
-                // give focus to close button
-                var closeButton = findById(MODAL_BUTTON_JS_ID);
-                closeButton.focus();
+                        // add class noscroll to body
+                        addClass(body, NO_SCROLL_CLASS);
 
-                e.preventDefault();
-            }
-
-            // click on close button or on overlay not blocked
-            var parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
-            if ((e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' || e.target.getAttribute('id') === MODAL_OVERLAY_ID || hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true) && eventName === 'click') {
-                var body = doc.querySelector('body');
-                var wrapperBody = findById(WRAPPER_PAGE_JS);
-                var modal = findById(MODAL_JS_ID);
-                var modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
-                var overlay = findById(MODAL_OVERLAY_ID);
-                var modalButtonClose = findById(MODAL_BUTTON_JS_ID);
-                var modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
-                var contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
-                var backgroundEnabled = overlay.getAttribute(MODAL_OVERLAY_BG_ENABLED_ATTR);
-
-                if (!(e.target.getAttribute('id') === MODAL_OVERLAY_ID && backgroundEnabled === 'disabled')) {
-
-                    closeModal({
-                        modal: modal,
-                        modalContent: modalContent,
-                        overlay: overlay,
-                        modalFocusBackId: modalFocusBackId,
-                        contentBackId: contentBackId,
-                        backgroundEnabled: backgroundEnabled,
-                        fromId: e.target.getAttribute('id')
-                    });
-
-                    // show back page
-                    wrapperBody.removeAttribute(ATTR_HIDDEN);
-
-                    // remove class noscroll to body
-                    removeClass(body, NO_SCROLL_CLASS);
-                }
-            }
-
-            // strike a key when modal opened
-            if (findById(MODAL_JS_ID) && eventName === 'keydown') {
-                var body = doc.querySelector('body');
-                var wrapperBody = findById(WRAPPER_PAGE_JS);
-                var modal = findById(MODAL_JS_ID);
-                var modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
-                var overlay = findById(MODAL_OVERLAY_ID);
-                var modalButtonClose = findById(MODAL_BUTTON_JS_ID);
-                var modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
-                var contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
-                var $listFocusables = [].slice.call(modal.querySelectorAll(FOCUSABLE_ELEMENTS_STRING));
-
-                // esc
-                if (e.keyCode === 27) {
-
-                    closeModal({
-                        modal: modal,
-                        modalContent: modalContent,
-                        overlay: overlay,
-                        modalFocusBackId: modalFocusBackId,
-                        contentBackId: contentBackId
-                    });
-
-                    // show back page
-                    wrapperBody.removeAttribute(ATTR_HIDDEN);
-
-                    // remove class noscroll to body
-                    removeClass(body, NO_SCROLL_CLASS);
-                }
-
-                // tab or Maj Tab in modal => capture focus
-                if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
-
-                    // maj-tab on first element focusable => focus on last
-                    if (e.shiftKey) {
-                        if (e.target === $listFocusables[0]) {
-                            $listFocusables[$listFocusables.length - 1].focus();
-                            e.preventDefault();
+                        // give focus to close button or specified element
+                        var closeButton = findById(MODAL_BUTTON_JS_ID);
+                        if (modalGiveFocusToId !== '') {
+                            var focusTo = findById(modalGiveFocusToId);
+                            if (focusTo) {
+                                focusTo.focus();
+                            } else {
+                                closeButton.focus();
+                            }
+                        } else {
+                            closeButton.focus();
                         }
-                    } else {
-                        // tab on last element focusable => focus on first
-                        if (e.target === $listFocusables[$listFocusables.length - 1]) {
-                            $listFocusables[0].focus();
-                            e.preventDefault();
+
+                        e.preventDefault();
+                    }
+
+                    // click on close button or on overlay not blocked
+                    var parentButton = searchParent(e.target, MODAL_BUTTON_JS_CLASS);
+                    if ((e.target.getAttribute('id') === MODAL_BUTTON_JS_ID || parentButton !== '' || e.target.getAttribute('id') === MODAL_OVERLAY_ID || hasClass(e.target, MODAL_BUTTON_JS_CLASS) === true) && eventName === 'click') {
+                        var body = doc.querySelector('body');
+                        var wrapperBody = findById(WRAPPER_PAGE_JS);
+                        var modal = findById(MODAL_JS_ID);
+                        var modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
+                        var overlay = findById(MODAL_OVERLAY_ID);
+                        var modalButtonClose = findById(MODAL_BUTTON_JS_ID);
+                        var modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
+                        var contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
+                        var backgroundEnabled = overlay.getAttribute(MODAL_OVERLAY_BG_ENABLED_ATTR);
+
+                        if (!(e.target.getAttribute('id') === MODAL_OVERLAY_ID && backgroundEnabled === 'disabled')) {
+
+                            closeModal({
+                                modal: modal,
+                                modalContent: modalContent,
+                                overlay: overlay,
+                                modalFocusBackId: modalFocusBackId,
+                                contentBackId: contentBackId,
+                                backgroundEnabled: backgroundEnabled,
+                                fromId: e.target.getAttribute('id')
+                            });
+
+                            // show back page
+                            wrapperBody.removeAttribute(ATTR_HIDDEN);
+
+                            // remove class noscroll to body
+                            removeClass(body, NO_SCROLL_CLASS);
                         }
                     }
-                }
 
-                // tab outside modal => put it in focus
-                if (e.keyCode === 9 && $listFocusables.indexOf(e.target) === -1) {
-                    e.preventDefault();
-                    $listFocusables[0].focus();
-                }
-            }
-        }, true);
-    });
+                    // strike a key when modal opened
+                    if (findById(MODAL_JS_ID) && eventName === 'keydown') {
+                        var body = doc.querySelector('body');
+                        var wrapperBody = findById(WRAPPER_PAGE_JS);
+                        var modal = findById(MODAL_JS_ID);
+                        var modalContent = findById(MODAL_CONTENT_JS_ID) ? findById(MODAL_CONTENT_JS_ID).innerHTML : '';
+                        var overlay = findById(MODAL_OVERLAY_ID);
+                        var modalButtonClose = findById(MODAL_BUTTON_JS_ID);
+                        var modalFocusBackId = modalButtonClose.getAttribute(MODAL_BUTTON_FOCUS_BACK_ID);
+                        var contentBackId = modalButtonClose.getAttribute(MODAL_BUTTON_CONTENT_BACK_ID);
+                        var $listFocusables = [].slice.call(modal.querySelectorAll(FOCUSABLE_ELEMENTS_STRING));
+
+                        // esc
+                        if (e.keyCode === 27) {
+
+                            closeModal({
+                                modal: modal,
+                                modalContent: modalContent,
+                                overlay: overlay,
+                                modalFocusBackId: modalFocusBackId,
+                                contentBackId: contentBackId
+                            });
+
+                            // show back page
+                            wrapperBody.removeAttribute(ATTR_HIDDEN);
+
+                            // remove class noscroll to body
+                            removeClass(body, NO_SCROLL_CLASS);
+                        }
+
+                        // tab or Maj Tab in modal => capture focus
+                        if (e.keyCode === 9 && $listFocusables.indexOf(e.target) >= 0) {
+
+                            // maj-tab on first element focusable => focus on last
+                            if (e.shiftKey) {
+                                if (e.target === $listFocusables[0]) {
+                                    $listFocusables[$listFocusables.length - 1].focus();
+                                    e.preventDefault();
+                                }
+                            } else {
+                                // tab on last element focusable => focus on first
+                                if (e.target === $listFocusables[$listFocusables.length - 1]) {
+                                    $listFocusables[0].focus();
+                                    e.preventDefault();
+                                }
+                            }
+                        }
+
+                        // tab outside modal => put it in focus
+                        if (e.keyCode === 9 && $listFocusables.indexOf(e.target) === -1) {
+                            e.preventDefault();
+                            $listFocusables[0].focus();
+                        }
+                    }
+                }, true);
+            });
+        }
+    };
 
     var onLoad = function onLoad() {
         attach();
