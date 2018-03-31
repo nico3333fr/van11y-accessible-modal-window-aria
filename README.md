@@ -47,6 +47,7 @@ First, put <code>class="js-modal"</code> on a button or a link to activate the s
 - Attribute <code>data-modal-close-title</code>: the title attribute of the close button in your modal window.
 - Attribute <code>data-modal-background-click="disabled"</code>: disable the possibility to click outside the modal window to close it.
 - Attribute <code>data-modal-close-img</code>: a path to a valid image for the close button.
+- Attribute <code>data-modal-focus-toid</code>: the <code>id</code> of the element in the modal you want to give the focus to, when loading the modal (closing button if not specified).
 
 If you need to close it, add `class="js-modal-close"` on an element in the modal content, it will trigger a click on close button.
 
@@ -54,7 +55,9 @@ Remember there are some demos, it will be easier to understand: <a href="https:/
 
 The script is launched when the page is loaded. If you need to execute it on AJAX-inserted content, you may use for example on `<div id="newContent">your modal launcher source</div>`:
 
-```van11yAccessibleModalWindowAria(document.getElementById('newContent'));```
+```van11yAccessibleModalWindowAria(document.getElementById('newContent')[, addListeners]);```
+
+<code>addListeners</code> is a facultative boolean (by default set to <code>true</code>) to add modal listeners (should be set up only the first time in most of the cases).
 
 ## Minimal styling classes
 
