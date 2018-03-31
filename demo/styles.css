@@ -167,8 +167,9 @@ dialog {
   overflow: hidden;
 }
 /* overlay covers everything */
-.simple-modal-overlay ,
-.simple-animated-modal-overlay {
+.simple-modal-overlay,
+.simple-animated-modal-overlay,
+.simple-animatedtransform-modal-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -181,10 +182,12 @@ dialog {
 }
 .simple-modal-overlay[data-background-click="disabled"],
 .simple-animated-modal-overlay[data-background-click="disabled"],
+.simple-animatedtransform-modal-overlay[data-background-click="disabled"],
 .simple-left-modal-overlay[data-background-click="disabled"] {
   cursor: auto;
 }
-.simple-animated-modal-overlay  {
+.simple-animated-modal-overlay,
+.simple-animatedtransform-modal-overlay {
   animation: fadewhite ease .5s 1 normal ;
 }
 
@@ -198,7 +201,8 @@ dialog {
 }
 /* modal */
 .simple-modal,
-.simple-animated-modal {
+.simple-animated-modal,
+.simple-animatedtransform-modal {
   position: fixed;
   left: 15%;
   width: 70%;
@@ -217,7 +221,8 @@ dialog {
   overflow: auto;
 }
 .simple-modal-close,
-.simple-animated-modal-close {
+.simple-animated-modal-close,
+.simple-animatedtransform-modal-close {
   float: right;
   background: #128197;
   border-radius: 1em;
@@ -241,6 +246,10 @@ dialog {
 .simple-animated-modal {
   -webkit-animation: apparition ease .5s 1 normal ;
           animation: apparition ease .5s 1 normal ;
+}
+.simple-animatedtransform-modal {
+  -webkit-animation: pop ease .5s 1 normal ;
+          animation: pop ease .5s 1 normal ;
 }
 
 @-webkit-keyframes apparition {
@@ -266,6 +275,41 @@ dialog {
   }
   100% {
     opacity: 1;
+	  max-height: 100%;
+	  width: 70%;
+	  left: 15%;
+  }
+}
+
+@-webkit-keyframes pop {
+  0% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	  -webkit-transform: scale(0);
+	          transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transform: scale(1);
+	        transform: scale(1);
+	  max-height: 100%;
+	  width: 70%;
+	  left: 15%;
+  }
+}
+@keyframes pop {
+  0% {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	  -webkit-transform: scale(0);
+	          transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	-webkit-transform: scale(1);
+	        transform: scale(1);
 	  max-height: 100%;
 	  width: 70%;
 	  left: 15%;

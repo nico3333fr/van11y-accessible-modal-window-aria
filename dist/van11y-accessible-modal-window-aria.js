@@ -28,6 +28,7 @@
     var MODAL_BUTTON_CONTENT_BACK_ID = 'data-content-back-id';
     var MODAL_BUTTON_FOCUS_BACK_ID = 'data-focus-back';
 
+    var MODAL_WRAPPER_CLASS_SUFFIX = 'modal__wrapper';
     var MODAL_CONTENT_CLASS_SUFFIX = 'modal__content';
     var MODAL_CONTENT_JS_ID = 'js-modal-content';
 
@@ -89,7 +90,7 @@
         while (el.firstChild)
             wrapper_el.append(el.firstChild);
         el.append(wrapper_el);
-      }*/
+     }*/
     function wrapInner(parent, wrapper) {
         if (typeof wrapper === "string") wrapper = document.createElement(wrapper);
 
@@ -145,6 +146,7 @@
 
         var id = MODAL_JS_ID;
         var modalClassName = config.modalPrefixClass + MODAL_CLASS_SUFFIX;
+        var modalClassWrapper = config.modalPrefixClass + MODAL_WRAPPER_CLASS_SUFFIX;
         var buttonCloseClassName = config.modalPrefixClass + MODAL_BUTTON_CLASS_SUFFIX;
         var buttonCloseInner = config.modalCloseImgPath ? '<img src="' + config.modalCloseImgPath + '" alt="' + config.modalCloseText + '" class="' + MODAL_CLOSE_IMG_CLASS_SUFFIX + '" />' : '<span class="' + MODAL_CLOSE_TEXT_CLASS_SUFFIX + '">\n                                        ' + config.modalCloseText + '\n                                       </span>';
         var contentClassName = config.modalPrefixClass + MODAL_CONTENT_CLASS_SUFFIX;
@@ -163,7 +165,7 @@
             }
         }
 
-        return '<dialog id="' + id + '" class="' + modalClassName + '" ' + ATTR_ROLE + '="' + MODAL_ROLE + '" ' + ATTR_OPEN + ' ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '">\n                  <div role="document">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
+        return '<dialog id="' + id + '" class="' + modalClassName + '" ' + ATTR_ROLE + '="' + MODAL_ROLE + '" ' + ATTR_OPEN + ' ' + ATTR_LABELLEDBY + '="' + MODAL_TITLE_ID + '">\n                  <div role="document" class="' + modalClassWrapper + '">\n                    ' + button_close + '\n                    <div class="' + contentClassName + '">\n                      ' + title + '\n                      ' + content + '\n                    </div>\n                  </div>\n                </dialog>';
     };
 
     var closeModal = function closeModal(config) {
@@ -188,7 +190,7 @@
 
     /** Find all modals inside a container
      * @param  {Node} node Default document
-     * @return {Array}      
+     * @return {Array}
      */
     var $listModals = function $listModals() {
         var node = arguments.length <= 0 || arguments[0] === undefined ? doc : arguments[0];
@@ -197,7 +199,7 @@
 
     /**
      * Build modals for a container
-     * @param  {Node} node 
+     * @param  {Node} node
      */
     var attach = function attach(node) {
 

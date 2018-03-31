@@ -26,6 +26,7 @@
     const MODAL_BUTTON_CONTENT_BACK_ID = 'data-content-back-id';
     const MODAL_BUTTON_FOCUS_BACK_ID = 'data-focus-back';
 
+    const MODAL_WRAPPER_CLASS_SUFFIX = 'modal__wrapper';
     const MODAL_CONTENT_CLASS_SUFFIX = 'modal__content';
     const MODAL_CONTENT_JS_ID = 'js-modal-content';
 
@@ -153,6 +154,7 @@
 
         let id = MODAL_JS_ID;
         let modalClassName = config.modalPrefixClass + MODAL_CLASS_SUFFIX;
+        let modalClassWrapper = config.modalPrefixClass + MODAL_WRAPPER_CLASS_SUFFIX;
         let buttonCloseClassName = config.modalPrefixClass + MODAL_BUTTON_CLASS_SUFFIX;
         let buttonCloseInner = config.modalCloseImgPath ?
             `<img src="${config.modalCloseImgPath}" alt="${config.modalCloseText}" class="${MODAL_CLOSE_IMG_CLASS_SUFFIX}" />` :
@@ -186,7 +188,7 @@
 
 
         return `<dialog id="${id}" class="${modalClassName}" ${ATTR_ROLE}="${MODAL_ROLE}" ${ATTR_OPEN} ${ATTR_LABELLEDBY}="${MODAL_TITLE_ID}">
-                  <div role="document">
+                  <div role="document" class="${modalClassWrapper}">
                     ${button_close}
                     <div class="${contentClassName}">
                       ${title}
@@ -221,14 +223,14 @@
 
     /** Find all modals inside a container
      * @param  {Node} node Default document
-     * @return {Array}      
+     * @return {Array}
      */
     const $listModals = (node = doc) => [].slice.call(node.querySelectorAll('.' + MODAL_JS_CLASS));
 
 
     /**
      * Build modals for a container
-     * @param  {Node} node 
+     * @param  {Node} node
      */
     const attach = (node) => {
 
