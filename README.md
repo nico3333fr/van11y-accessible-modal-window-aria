@@ -48,6 +48,7 @@ First, put <code>class="js-modal"</code> on a button or a link to activate the s
 - Attribute <code>data-modal-background-click="disabled"</code>: disable the possibility to click outside the modal window to close it.
 - Attribute <code>data-modal-close-img</code>: a path to a valid image for the close button.
 - Attribute <code>data-modal-focus-toid</code>: the <code>id</code> of the element in the modal you want to give the focus to, when loading the modal (closing button if not specified).
+- Attribute <code>data-modal-describedby-id</code>: adds `aria-describedby=<the value of this attribute>` to the `dialog` tag.
 
 If you need to close it, add `class="js-modal-close"` on an element in the modal content, it will trigger a click on close button.
 
@@ -145,7 +146,7 @@ dialog {
   top: 5%;
   width: 70%;
   max-height: 98vh;
-  border: 2px solid #000; 
+  border: 2px solid #000;
   background: #fff;
   z-index: 667;
   padding: 2em;
@@ -166,7 +167,7 @@ dialog {
 .simple-modal-close:focus,
 .simple-modal-close:hover,
 .simple-modal-close:active {
-  outline: 1px dotted #fff;  
+  outline: 1px dotted #fff;
 }
 .simple-modal-close:hover,
 .simple-modal-close:active {
@@ -204,7 +205,7 @@ dialog {
     height: 90%;
     width: 90%;
   }
-  
+
 }
 
 /* for this example: mobile */
