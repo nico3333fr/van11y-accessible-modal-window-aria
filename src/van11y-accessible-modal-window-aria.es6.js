@@ -160,8 +160,8 @@
       let modalClassWrapper = config.modalPrefixClass + MODAL_WRAPPER_CLASS_SUFFIX;
       let buttonCloseClassName = config.modalPrefixClass + MODAL_BUTTON_CLASS_SUFFIX;
       let buttonCloseInner = config.modalCloseImgPath ?
-        `<img src="${config.modalCloseImgPath}" alt="${config.modalCloseText}" class="${MODAL_CLOSE_IMG_CLASS_SUFFIX}" />` :
-        `<span class="${MODAL_CLOSE_TEXT_CLASS_SUFFIX}">
+        `<img src="${config.modalCloseImgPath}" alt="${config.modalCloseText}" class="${config.modalPrefixClass}${MODAL_CLOSE_IMG_CLASS_SUFFIX}" />` :
+        `<span class="${config.modalPrefixClass}${MODAL_CLOSE_TEXT_CLASS_SUFFIX}">
                                           ${config.modalCloseText}
                                          </span>`;
       let contentClassName = config.modalPrefixClass + MODAL_CONTENT_CLASS_SUFFIX;
