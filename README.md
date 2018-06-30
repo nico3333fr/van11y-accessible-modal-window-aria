@@ -64,7 +64,7 @@ The script is launched when the page is loaded. If you need to execute it on AJA
 
 Here is the minimal set of styles needed to make it work (without data-modal-prefix-class attribute):
 
-```
+```css
 /* needed for old browsers */
 dialog {
   display: block;
@@ -100,7 +100,7 @@ dialog {
 
 Here are the styles (unprefixed) used for the demo, I’ve used <code>data-modal-prefix-class="simple"</code> and <code>data-modal-prefix-class="simple-animated"</code> to namespace elements, so each one will start with <code>.simple-</code>/<code>.simple-animated-</code>:
 
-```
+```css
 dialog {
   display: block;
   border: 0;
@@ -227,7 +227,7 @@ dialog {
 
 Here are the styles (unprefixed) used for the third example of the demo, I’ve used <code>data-modal-prefix-class="simple-left"</code> to namespace elements, so each one will start with <code>.simple-left-</code>:
 
-```
+```css
 /* needed for old browsers */
 dialog {
   display: block;
