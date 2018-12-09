@@ -1,7 +1,7 @@
 /*
  * ES2015 accessible modal window system, using ARIA
  * Website: https://van11y.net/accessible-modal/
- * License MIT: https://github.com/nico3333fr/van11y-accessible-modal-aria/blob/master/LICENSE
+ * License MIT: https://github.com/nico3333fr/van11y-accessible-modal-window-aria/blob/master/LICENSE
  */
 (doc => {
 
