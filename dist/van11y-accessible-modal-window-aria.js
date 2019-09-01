@@ -40,7 +40,7 @@
   var MODAL_TITLE_ID = 'modal-title';
   var MODAL_TITLE_CLASS_SUFFIX = 'modal-title';
 
-  var FOCUSABLE_ELEMENTS_STRING = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
+  var FOCUSABLE_ELEMENTS_STRING = "a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
   var WRAPPER_PAGE_JS = 'js-modal-page';
 
   var MODAL_JS_ID = 'js-modal';

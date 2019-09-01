@@ -38,7 +38,7 @@
     const MODAL_TITLE_ID = 'modal-title';
     const MODAL_TITLE_CLASS_SUFFIX = 'modal-title';
 
-    const FOCUSABLE_ELEMENTS_STRING = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
+    const FOCUSABLE_ELEMENTS_STRING = "a[href], area[href], input:not([type='hidden']):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
     const WRAPPER_PAGE_JS = 'js-modal-page';
 
     const MODAL_JS_ID = 'js-modal';
