@@ -232,7 +232,7 @@ dialog {
 .simple-modal-close:focus,
 .simple-modal-close:hover,
 .simple-modal-close:active {
-  outline: 1px dotted #fff;  
+  outline: 1px solid black;  
 }
 .simple-modal-close:hover,
 .simple-modal-close:active {
