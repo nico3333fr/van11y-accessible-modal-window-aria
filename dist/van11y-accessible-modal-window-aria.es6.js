@@ -245,7 +245,9 @@
           let wrapperBody = findById(WRAPPER_PAGE_JS);
           let body = doc.querySelector('body');
 
+        if(! modal_node.getAttribute('id')){
           modal_node.setAttribute('id', MODAL_ID_PREFIX + iLisible);
+        }
           modal_node.setAttribute(ATTR_HASPOPUP, ATTR_HASPOPUP_VALUE);
 
           if (wrapperBody === null || wrapperBody.length === 0) {

@@ -1,6 +1,6 @@
 # Van11y dist files
 
-Here are the files produced after Gulp tasks (from ```src``` folder to this one).
+Here are the files produced by the npm build (from ```src``` folder to this one).
 
 - ```van11y-accessible-modal-window-aria.es6.js``` is a copy of the ES6/ES2015 file in ```src``` folder.
 - ```van11y-accessible-modal-window-aria.js``` is a transpiled version of the ES6/ES2015 file in ```src``` folder. Basically, the ES6/ES2015 version has been transformed to an ES5 compatible JS file, which is IE9+ compatible.
@@ -8,7 +8,7 @@ Here are the files produced after Gulp tasks (from ```src``` folder to this one)
 
 ## What should I use?
 
-If you know Gulp, ES2015, NPM, etc. modify the file in ```src``` folder and run the build.
+If you know ES2015, NPM, etc. modify the file in ```src``` folder and run ```npm run build```.
 
 Else, go to ```dist``` folder: 
 
