@@ -3,7 +3,7 @@
   "name": "van11y-accessible-modal-window-aria",
   "description": "ES2015 accessible modal window system, using ARIA (compatible IE9+ when transpiled)",
   "main": "dist/van11y-accessible-modal-window-aria.min.js",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "keywords": [
     "Accessibility",
     "ARIA",
@@ -36,8 +36,8 @@
   "license": "MIT",
   "homepage": "https://van11y.net/accessible-modal/",
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
     "uglify-js": "^3.19.3"
   }
 }

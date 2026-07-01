@@ -33,7 +33,6 @@ If you never activate a modal window, it won’t be anywhere in the code.
 __Download the script__
 
 You may use npm command: <code>npm i van11y-accessible-modal-window-aria</code>.
-You may also use bower: <code>bower install van11y-accessible-modal-window-aria</code>.
 
 __Option and attributes__
 
